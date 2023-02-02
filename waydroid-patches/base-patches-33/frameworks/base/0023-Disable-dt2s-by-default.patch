@@ -1,0 +1,40 @@
+From 6148205485f77cb77989327c3bc674679bc7bdb4 Mon Sep 17 00:00:00 2001
+From: Alessandro Astone <ales.astone@gmail.com>
+Date: Wed, 8 Feb 2023 14:54:05 +0100
+Subject: [PATCH 23/26] Disable dt2s by default
+
+Change-Id: I09888f9125423b54cf9658db7db2c5d6f34e2a12
+---
+ .../android/systemui/shade/NotificationPanelViewController.java | 2 +-
+ .../src/com/android/systemui/shade/PulsingGestureListener.kt    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/shade/NotificationPanelViewController.java b/packages/SystemUI/src/com/android/systemui/shade/NotificationPanelViewController.java
+index 3dbb6e0ccedb..b2eb29b82007 100644
+--- a/packages/SystemUI/src/com/android/systemui/shade/NotificationPanelViewController.java
++++ b/packages/SystemUI/src/com/android/systemui/shade/NotificationPanelViewController.java
+@@ -4520,7 +4520,7 @@ public final class NotificationPanelViewController implements Dumpable {
+         @Override
+         public void onTuningChanged(String key, String newValue) {
+             if (DOUBLE_TAP_SLEEP_GESTURE.equals(key)) {
+-                mDoubleTapToSleepEnabled = TunerService.parseIntegerSwitch(newValue, true);
++                mDoubleTapToSleepEnabled = TunerService.parseIntegerSwitch(newValue, false);
+             }
+         }
+     }
+diff --git a/packages/SystemUI/src/com/android/systemui/shade/PulsingGestureListener.kt b/packages/SystemUI/src/com/android/systemui/shade/PulsingGestureListener.kt
+index 03ae22726130..348cf79d1819 100644
+--- a/packages/SystemUI/src/com/android/systemui/shade/PulsingGestureListener.kt
++++ b/packages/SystemUI/src/com/android/systemui/shade/PulsingGestureListener.kt
+@@ -85,7 +85,7 @@ class PulsingGestureListener @Inject constructor(
+                     singleTapEnabled = ambientDisplayConfiguration.tapGestureEnabled(
+                             userTracker.userId)
+                 DOUBLE_TAP_SLEEP_GESTURE ->
+-                    doubleTapToSleepEnabled = TunerService.parseIntegerSwitch(value, true)
++                    doubleTapToSleepEnabled = TunerService.parseIntegerSwitch(value, false)
+             }
+         }
+         tunerService.addTunable(tunable,
+-- 
+2.41.0
+
