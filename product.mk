@@ -36,3 +36,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.setupwizard.mode=DISABLED
 
+# PC mode
+PRODUCT_PACKAGES += \
+    pc.xml
